@@ -3,8 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Article;
 
-class Category extends Model
-{
-    //
+
+class Category extends Model {
+    protected $table = 'categories';
+
+    public function articles() : HasMany{
+        return $this->hasMany(Article::class);
+      
+}
 }
