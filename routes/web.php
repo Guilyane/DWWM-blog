@@ -8,5 +8,10 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/categories', [CategoryController::class, 'index']);
+// Articles List Route
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+
+// Article Details Route
+Route::get('/articles/{article}', [ArticleController::class, 'details'])->name('articles.details');
