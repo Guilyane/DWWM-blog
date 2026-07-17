@@ -42,6 +42,19 @@
                                 Brouillon
                             </span>
                         @endif
+                         </td>
+
+                    <td class="px-4 py-3">
+                        {{ $article->created_at->format('d/m/Y') }}
+                    </td>
+
+                    <td class="px-4 py-3 flex items-center gap-4">
+
+                        {{-- Modifier --}}
+                        <a href="{{ route('admin.articles.edit', $article->id) }}"
+                           class="text-blue-600 hover:text-blue-800">
+                            ✏️
+                        </a>
                     </td>
 
                     <td class="px-4 py-3">

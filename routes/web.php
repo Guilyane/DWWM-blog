@@ -19,3 +19,8 @@ Route::get('/articles/{article}', [ArticleController::class, 'details'])->name('
 
 Route::get('/admin/articles', [ArticleController::class, 'index2'])
     ->name('admin.articles.list');
+
+    //Editer un article 
+    Route::get('/admin/articles/{id}/edit', [ArticleController::class, 'edit'])
+    ->name('admin.articles.edit');
+
