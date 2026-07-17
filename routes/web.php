@@ -15,3 +15,7 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 
 // Article Details Route
 Route::get('/articles/{article}', [ArticleController::class, 'details'])->name('articles.details');
+
+
+Route::get('/admin/articles', [ArticleController::class, 'index2'])
+    ->name('admin.articles.list');
