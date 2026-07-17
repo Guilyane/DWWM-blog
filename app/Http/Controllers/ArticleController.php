@@ -22,4 +22,12 @@ class ArticleController extends Controller
 
         return view('articles-details', compact('article'));
     }
+    public function index2()
+{
+    // Récupère tous les articles, brouillons inclus
+    $articles = Article::orderBy('created_at', 'desc')->get();
+
+    return view('admin.articles-list', compact('articles'));
+}
+
 }
