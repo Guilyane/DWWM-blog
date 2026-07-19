@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('slug', 255)->unique();
             $table->longText('content');
-            $table->enum('status', ['DRAFT', 'PUBLISHED'])->default('DRAFT');
+            $table->enum('status', ['Brouillon', 'Publié'])->default('Brouillon');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->foreignId('category_id')->constrained()->restrictOnDelete();
