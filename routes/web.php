@@ -8,19 +8,26 @@ Route::get('/', function () {
     return view('home');
 });
 
+// --- PUBLIC ---
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/categories', [CategoryController::class, 'index']);
-// Articles List Route
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-
-// Article Details Route
 Route::get('/articles/{article}', [ArticleController::class, 'details'])->name('articles.details');
 
-
+// --- ADMIN ---
 Route::get('/admin/articles', [ArticleController::class, 'index2'])
     ->name('admin.articles.list');
 
-    //Editer un article 
-    Route::get('/admin/articles/{id}/edit', [ArticleController::class, 'edit'])
+// Formulaire de création
+Route::get('/admin/articles/create', [ArticleController::class, 'create'])
+    ->name('admin.articles.create');
+
+// Enregistrement d’un nouvel article
+Route::post('/admin/articles', [ArticleController::class, 'store'])
+    ->name('admin.articles.store');
+
+// Formulaire d’édition
+Route::get('/admin/articles/{id}/edit', [ArticleController::class, 'edit'])
     ->name('admin.articles.edit');
 
+// Mise à jour d’un article
+Route::put('/admin/articles/{id}', [ArticleController::class, 'update'])
+    ->name('admin.articles.update');
