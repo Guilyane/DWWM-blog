@@ -3,8 +3,14 @@
 @section('content')
 <div class="p-6">
 
+    {{-- Titre + bouton nouvel article --}}
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold">Articles</h1>
+
+        <a href="{{ route('admin.articles.create') }}"
+           class="bg-black text-black px-4 py-2 rounded hover:bg-gray-800">
+            + Nouvel article
+        </a>
     </div>
 
     <div class="bg-white shadow rounded-lg overflow-hidden">
@@ -27,9 +33,7 @@
                     <td class="px-4 py-3">{{ $article->title }}</td>
 
                     {{-- Catégorie --}}
-                    <td class="px-4 py-3">
-                        <span class="text-gray-800">{{ $article->category->name }}</span>
-                    </td>
+                    <td class="px-4 py-3">{{ $article->category->name }}</td>
 
                     {{-- Statut --}}
                     <td class="px-4 py-3">
@@ -69,7 +73,14 @@
                             <button type="submit" class="text-red-600 hover:text-red-800">
                                 🗑️
                             </button>
+
                         </form>
+
+                        {{-- Voir (optionnel si tu veux ajouter ➤) --}}
+                        <a href="{{ route('articles.details', $article->id) }}"
+                           class="text-gray-600 hover:text-gray-800">
+                            ➤
+                        </a>
 
                     </td>
 
@@ -77,6 +88,34 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    {{-- Pagination --}}
+    <div class="flex justify-between items-center mt-4">
+
+        {{-- Bouton précédent --}}
+        @if ($articles->onFirstPage())
+            <span class="text-gray-400">← Précédent</span>
+        @else
+            <a href="{{ $articles->previousPageUrl() }}" class="text-blue-600 hover:text-blue-800">
+                ← Précédent
+            </a>
+        @endif
+
+        {{-- Page X/Y --}}
+        <span class="text-gray-700">
+            Page {{ $articles->currentPage() }} / {{ $articles->lastPage() }}
+        </span>
+
+        {{-- Bouton suivant --}}
+        @if ($articles->hasMorePages())
+            <a href="{{ $articles->nextPageUrl() }}" class="text-blue-600 hover:text-blue-800">
+                Suivant →
+            </a>
+        @else
+            <span class="text-gray-400">Suivant →</span>
+        @endif
+
     </div>
 
 </div>
