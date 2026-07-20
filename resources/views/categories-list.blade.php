@@ -8,15 +8,19 @@
 </head>
 <body>
     <h1>Categories List</h1>
-    @if ($categories->isEmpty())
-        <p>There's no category</p>
-    @else
-    @foreach ( $categories as $category )
+   
+    @forelse ( $categories as $category )        
+    
     <div>
         <h2>{{$category->name}}</h2>
-    
+        @foreach ($category->articles as $article)
+           <p>{{$article->title}}</p>  
+        @endforeach
+       
     </div>    
-    @endforeach
-    @endif
+
+@empty
+<p>Il n'y a pas de categories disponibles</p>
+@endforelse
 </body>
 </html>
