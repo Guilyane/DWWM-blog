@@ -5,8 +5,6 @@
 
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold">Articles</h1>
-
-        
     </div>
 
     <div class="bg-white shadow rounded-lg overflow-hidden">
@@ -24,12 +22,16 @@
             <tbody>
                 @foreach ($articles as $article)
                 <tr class="border-b hover:bg-gray-50">
+
+                    {{-- Titre --}}
                     <td class="px-4 py-3">{{ $article->title }}</td>
 
+                    {{-- Catégorie --}}
                     <td class="px-4 py-3">
                         <span class="text-gray-800">{{ $article->category->name }}</span>
                     </td>
 
+                    {{-- Statut --}}
                     <td class="px-4 py-3">
                         @if ($article->status === 'Publié')
                             <span class="flex items-center gap-2 text-green-600">
@@ -42,12 +44,14 @@
                                 Brouillon
                             </span>
                         @endif
-                         </td>
+                    </td>
 
+                    {{-- Date --}}
                     <td class="px-4 py-3">
                         {{ $article->created_at->format('d/m/Y') }}
                     </td>
 
+                    {{-- Actions --}}
                     <td class="px-4 py-3 flex items-center gap-4">
 
                         {{-- Modifier --}}
@@ -55,17 +59,20 @@
                            class="text-blue-600 hover:text-blue-800">
                             ✏️
                         </a>
+
+                        {{-- Supprimer --}}
+                        <form action="{{ route('admin.articles.delete', $article->id) }}"
+                              method="POST"
+                              onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-600 hover:text-red-800">
+                                🗑️
+                            </button>
+                        </form>
+
                     </td>
 
-                    <td class="px-4 py-3">
-                        {{ $article->created_at->format('d/m/Y') }}
-                    </td>
-
-                    <td class="px-4 py-3 flex items-center gap-4">
-
-                      
-
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
