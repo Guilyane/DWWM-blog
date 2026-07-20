@@ -31,3 +31,7 @@ Route::get('/admin/articles/{id}/edit', [ArticleController::class, 'edit'])
 // Mise à jour d’un article
 Route::put('/admin/articles/{id}', [ArticleController::class, 'update'])
     ->name('admin.articles.update');
+
+    // Suppression d’un article
+Route::delete('/admin/articles/{id}', [ArticleController::class, 'destroy'])
+    ->name('admin.articles.delete');

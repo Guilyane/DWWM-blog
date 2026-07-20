@@ -78,5 +78,14 @@ class ArticleController extends Controller
     return redirect()->route('admin.articles.list')
         ->with('success', 'Article mis à jour avec succès');
 }
+    //Suppression des articles
+    public function destroy(int $id)
+{
+    $article = Article::findOrFail($id);
+    $article->delete();
+
+    return redirect()->route('admin.articles.list')
+        ->with('success', 'Article supprimé avec succès');
+}
 
 }
