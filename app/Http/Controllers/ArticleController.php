@@ -27,10 +27,10 @@ class ArticleController extends Controller
 
     // Liste admin
     public function index2(): View
-    {
-        $articles = Article::orderBy('created_at', 'desc')->get();
-        return view('admin.articles-list', compact('articles'));
-    }
+{
+    $articles = Article::orderBy('created_at', 'desc')->paginate(3); // 10 articles par page
+    return view('admin.articles-list', compact('articles'));
+}
 
     // Formulaire création
     public function create(): View
