@@ -35,3 +35,8 @@ Route::put('/admin/articles/{id}', [ArticleController::class, 'update'])
     // Suppression d’un article
 Route::delete('/admin/articles/{id}', [ArticleController::class, 'destroy'])
     ->name('admin.articles.delete');
+
+
+    //CATEGORIES
+Route::get('/categories', [CategoryController::class, 'index'])
+    ->name('categories.index');
