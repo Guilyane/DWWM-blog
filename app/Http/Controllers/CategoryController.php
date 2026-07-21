@@ -10,8 +10,13 @@ use Illuminate\View\View;
 class CategoryController extends Controller
 {
     public function index() : View{
-        $categories = Category::all();
+        $categories = Category::withCount('articles')->get();
 
         return view('categories-list',['categories'=>$categories]);
     }
+  
+  
+    //Comptage des articles par catégorie
+
 }
+
