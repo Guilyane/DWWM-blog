@@ -35,3 +35,18 @@ Route::put('/admin/articles/{id}', [ArticleController::class, 'update'])
     // Suppression d’un article
 Route::delete('/admin/articles/{id}', [ArticleController::class, 'destroy'])
     ->name('admin.articles.delete');
+
+
+    //CATEGORIES
+
+Route::prefix('admin/categories')->name('admin.categories.')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+    Route::get('/create', [CategoryController::class, 'create'])->name('create');
+    Route::post('/store', [CategoryController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
+});
+
+
+
