@@ -60,6 +60,29 @@
             </tbody>
         </table>
     </div>
+     {{-- PAGINATION STYLE MAQUETTE --}}
+    <div class="pagination">
+
+        {{-- Précédent --}}
+        @if ($categories->onFirstPage())
+            <span class="disabled">← Précédent</span>
+        @else
+            <a href="{{ $categories->previousPageUrl() }}">← Précédent</a>
+        @endif
+
+        {{-- Page X/Y --}}
+        <span>
+            Page {{ $categories->currentPage() }} / {{ $categories->lastPage() }}
+        </span>
+
+        {{-- Suivant --}}
+        @if ($categories->hasMorePages())
+            <a href="{{ $categories->nextPageUrl() }}">Suivant →</a>
+        @else
+            <span class="disabled">Suivant →</span>
+        @endif
+
+    </div>
 
 </div>
 @endsection
