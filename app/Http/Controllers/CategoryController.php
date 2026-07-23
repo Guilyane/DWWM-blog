@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index(): View
     {
-        $categories = Category::withCount('articles')->get();
+        $categories = Category::withCount('articles')->paginate(3);
         return view('categories-list', ['categories' => $categories]);
     }
 
